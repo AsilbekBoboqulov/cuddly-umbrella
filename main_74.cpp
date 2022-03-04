@@ -3,7 +3,11 @@
 using namespace std;
 int main()
 {
-    int arr[] = {6,5,3,8,2,0,9,2};
+    int a;cin>>a;
+    int arr[a];
+    for(int j = 0; j<a; j++){
+        cin>>arr[j];
+    }
     int l = sizeof(arr)/sizeof(arr[0]);
     sort(arr, arr+l);
     for(int i = 0; i<l; i++){
