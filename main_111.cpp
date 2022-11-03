@@ -15,6 +15,7 @@ void solve(){
     iota(all(vec), 1);
     for(auto x:vec) cout << x << ' '; cout << '\n';
     vec.erase(vec.begin() + 2); // 2 or n th element
+    // vector.erase( vector.begin() + 3, vector.begin() + 5 );
     for(auto x:vec) cout << x << ' ';
 }
 signed main(){
