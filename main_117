@@ -1,0 +1,67 @@
+///Bismillahir Rohmaniym Rohiym
+#include <bits/stdc++.h>
+using namespace std;
+#define ff first
+#define sc second
+#define int long long
+#define sz(x) long((x).size())
+#define all(x) (x).begin(), (x).end()
+const int inf = 500010;
+const int mod = 1e9+7;
+const double PI = acos( -1. );
+void in(){
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+}
+vector<int> tree(inf);
+void make(){
+    for(int i = 1; i < inf; i++){
+        int p = i + (i & -i);
+        if(p < inf) tree[p] += tree[i];
+    }
+}
+void add(int i, int v){
+    while(i < inf){
+        tree[i] += v;
+        i += (i & -i);
+    }
+}
+int sum(int i){
+    int sum = 0;
+    while(i > 0){
+        sum += tree[i];
+        i -= (i & -i);
+    }
+    return sum;
+}
+void print(int l, int r){
+    cout << sum(r) - sum(l) << '\n';
+}
+void solve(){
+    int n, q; cin >> n >> q;
+    vector<int> vec(n+1); vec[0] = 0;
+    for(int i = 0; i < n; i++){ cin >> vec[i+1]; tree[i+1] = vec[i+1]; }
+    make();
+    //for(auto x:tree) cout << x << ' ';
+    while(q--){
+        int t, l, r; cin >> t >> l >> r;
+        (t ? print(l, r) : add(l + 1, r));
+    }
+
+}
+signed main(){
+    //in();
+    cin.tie(0)->sync_with_stdio(0);
+    int t; t = 1;
+    //cin >> t;
+    while(t--) solve();
+}
+/*
+        ██╗  ██╗███╗   ██╗██╗   ██╗ █████╗ ███████╗
+        ██║ ██╔╝████╗  ██║╚██╗ ██╔╝██╔══██╗╚══███╔╝
+        █████╔╝ ██╔██╗ ██║ ╚████╔╝ ███████║  ███╔╝
+        ██╔═██╗ ██║╚██╗██║  ╚██╔╝  ██╔══██║ ███╔╝
+███████╗██║  ██╗██║ ╚████║   ██║   ██║  ██║███████╗███████╗
+╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝
+*/
+//https://atcoder.jp/contests/practice2/submissions/51203622
